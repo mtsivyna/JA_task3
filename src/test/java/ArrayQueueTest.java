@@ -35,9 +35,9 @@ public class ArrayQueueTest {
         methods.extendQueue();
 
         // Verify that extendQueue method add last 3 elements into the queue
-        assertEquals(0, methods.showArrayElement(numberOfElements + 2));
-        assertEquals(0, methods.showArrayElement(numberOfElements + 1));
-        assertEquals(0, methods.showArrayElement(numberOfElements));
+        assertEquals(0, methods.getArrayElement(numberOfElements + 2));
+        assertEquals(0, methods.getArrayElement(numberOfElements + 1));
+        assertEquals(0, methods.getArrayElement(numberOfElements));
     }
 
     /**
@@ -55,7 +55,7 @@ public class ArrayQueueTest {
                 methods.addElement(arraySize);
 
                 // Verify that elements have been stored into the queue
-                assertEquals(arraySize, methods.showArrayElement(arraySize));
+                assertEquals(arraySize, methods.getArrayElement(arraySize));
             }
         }
 
@@ -67,11 +67,11 @@ public class ArrayQueueTest {
                 methods.addElement(arraySize);
 
                 // Verify that elements have been stored into the queue
-                assertEquals(arraySize, methods.showArrayElement(arraySize));
+                assertEquals(arraySize, methods.getArrayElement(arraySize));
             }
 
             // Verify that last element in queue equals to 0
-            assertEquals(0, methods.showArrayElement(numberOfElements - 1));
+            assertEquals(0, methods.getArrayElement(numberOfElements - 1));
         }
 
         // Case 3. When number of added elements more than queue size
@@ -82,14 +82,14 @@ public class ArrayQueueTest {
                 methods.addElement(arraySize);
 
                 // Verify that elements have been stored into the queue
-                assertEquals(arraySize, methods.showArrayElement(arraySize));
+                assertEquals(arraySize, methods.getArrayElement(arraySize));
             }
 
             // Adding value (value index = queue size + 1) into the queue
             methods.addElement(numberOfElements);
 
             // Verify that last value was stored into the first array position
-            assertEquals(numberOfElements, methods.showArrayElement(0));
+            assertEquals(numberOfElements, methods.getArrayElement(0));
         }
     }
 
@@ -108,7 +108,7 @@ public class ArrayQueueTest {
                 methods.addElement(arraySize);
 
                 // Verify that last stored value is equals to element returned by getHeadElement method
-                assertEquals(methods.showArrayElement(arraySize), methods.getHeadElement());
+                assertEquals(methods.getArrayElement(arraySize), methods.getHeadElement());
             }
         }
 
@@ -120,7 +120,7 @@ public class ArrayQueueTest {
                 methods.addElement(arraySize);
 
                 // Verify that last stored value is equals to element returned by getHeadElement method
-                assertEquals(methods.showArrayElement(arraySize), methods.getHeadElement());
+                assertEquals(methods.getArrayElement(arraySize), methods.getHeadElement());
             }
         }
 
@@ -132,8 +132,36 @@ public class ArrayQueueTest {
                 methods.addElement(arraySize);
 
                 // Verify that last stored value is equals to element returned by getHeadElement method
-                assertEquals(methods.showArrayElement(arraySize), methods.getHeadElement());
+                assertEquals(methods.getArrayElement(arraySize), methods.getHeadElement());
             }
         }
+    }
+
+    @Test
+       public void noExtendQueueTest() throws Exception {
+
+        ArrayQueue queue = new ArrayQueue(5);
+
+        queue.addElement(3);
+        queue.addElement(5);
+        queue.addElement(7);
+        queue.addElement(1);
+
+        assertEquals(3, queue.getHeadElement());
+        assertEquals(5, queue.getHeadElement());
+
+        queue.addElement(4);
+        queue.addElement(9);
+
+        assertEquals(7, queue.getHeadElement());
+        assertEquals(1, queue.getHeadElement());
+        assertEquals(4, queue.getHeadElement());
+        assertEquals(9, queue.getHeadElement());
+
+        assertEquals(5, queue.getQueueSize());
+
+
+
+// проверить что размер массива все еще 5
     }
 }

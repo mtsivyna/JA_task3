@@ -10,7 +10,7 @@ public class mainTest {
      * @param args
      */
     public static void main(String args []) {
-        ArrayQueue methods = new ArrayQueue(4);    // Create object of ArrayQueue class
+        ArrayQueue methods = new ArrayQueue(5);    // Create object of ArrayQueue class
         /*for (int elementsPosition = 1; elementsPosition <= 7; elementsPosition++) {
             methods.addElement(elementsPosition);
             System.out.println(methods.getElement() + "\n");
@@ -22,17 +22,26 @@ public class mainTest {
 
         methods.addElement(3);
 
+
+
         methods.addElement(4);
-
-        //methods.extendQueue();
         methods.addElement(5);
-        methods.addElement(5);
+        System.out.println(methods.getHeadElement() + "------------");
+        System.out.println(methods.getHeadElement() + "------------");
+        System.out.println(methods.getHeadElement() + "------------");
+        System.out.println(methods.getHeadElement() + "------------");
+        System.out.println(methods.getHeadElement() + "------------");
+        System.out.println(methods.getHeadElement() + "------------");
+        System.out.println(methods.getHeadElement() + "------------");
+        System.out.println(methods.getHeadElement() + "------------");
+        System.out.println(methods.getHeadElement() + "------------");
+        System.out.println(methods.getHeadElement() + "------------");
+        System.out.println(methods.getHeadElement() + "------------");
+        System.out.println(methods.getHeadElement() + "------------");
 
 
 
-
-        System.out.println(methods.getHeadElement() + "\n");
-        System.out.println(methods.showArrayElement(3));                 // Show result queue
+        System.out.println(methods.getArrayElement(3));                 // Show result queue
        /* new ArrayQueueStatic(4);                   // Create object of ArrayQueueStatic class
         for (int elementsPosition = 1; elementsPosition <= 7; elementsPosition++) {
             ArrayQueueStatic.addElement(elementsPosition);

@@ -12,7 +12,6 @@ public class ArrayQueue {
     private int numberOfElements;   // Number of elements in array
     private int storePosition;      // Value store position
     private int removePosition;     // Position of remove array element
-    private int headElement;        // Head queue element
     private int currentElement;     // Queue element with defined index
 
     /**
@@ -43,18 +42,11 @@ public class ArrayQueue {
     public void addElement(int value) {
 
         // Verification of boundary positions in array
-        if (storePosition == array.length) {
+        if (++storePosition == array.length) {
             storePosition = 0;
         }
-
-        removePosition++;
-
-        if (removePosition == array.length) {
-            removePosition = 0;
-        }
-
         array[storePosition] = value;   // Store current value into the define position
-        storePosition++;                // Increment store position for next value
+
     }
 
     /**
@@ -63,21 +55,18 @@ public class ArrayQueue {
      */
     public int getHeadElement() {
 
-        if (storePosition == 0) {
-            headElement = array[numberOfElements - 1];
+        // Verification of boundary positions in array
+        if (++removePosition == array.length) {
+            removePosition = 0;
         }
 
-        else {
-            headElement = array[storePosition - 1];
-        }
-
-        return headElement;
+        return array[removePosition];   // Return head element
     }
 
     /**
      * Current method is used for getting queue elements with defined index
      */
-    public int showArrayElement(int index) {
+    public int getArrayElement(int index) {
 
         // Queue index validation
         if (index <= array.length - 1){
@@ -88,5 +77,14 @@ public class ArrayQueue {
             System.out.println("Please enter valid index");
         }
         return currentElement;
+    }
+
+    /**
+     * Current method used for getting queue size
+     * @return
+     */
+    public int getQueueSize () {
+        int size = array.length;
+        return size;
     }
 }
