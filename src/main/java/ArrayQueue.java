@@ -9,10 +9,8 @@ public class ArrayQueue {
 
     private int[] array;            // Array of int elements
     private int[] extendedArray;    // Extended array of int elements
-    private int numberOfElements;   // Number of elements in array
     private int storePosition;      // Value store position
     private int removePosition;     // Position of remove array element
-    private int currentElement;     // Queue element with defined index
 
     /**
      * Current method is used for creating array
@@ -20,18 +18,7 @@ public class ArrayQueue {
      */
     public ArrayQueue(int numberOfElements) {
 
-        this.numberOfElements = numberOfElements;
         array = new int[numberOfElements];
-    }
-
-    /**
-     * Current method is used for extending primary queue
-     */
-    public void extendQueue() {
-
-        extendedArray = new int[array.length + 3];                      // create new extended array
-        System.arraycopy(array, 0, extendedArray, 0, array.length);     // copying data into the new array
-        array = extendedArray;                                          // redefining array
     }
 
     /**
@@ -41,11 +28,21 @@ public class ArrayQueue {
      */
     public void addElement(int value) {
 
+        // Incrementing position
+        ++ storePosition;
+
         // Verification of boundary positions in array
-        if (++storePosition == array.length) {
+        if (storePosition == array.length) {
+
+            extendedArray = new int[array.length + 1];                     // create new extended array
+            System.arraycopy(array, 0, extendedArray, 1, array.length);    // copying data into the new array
+            array = extendedArray;                                         // redefining array
             storePosition = 0;
+            removePosition ++;
         }
-        array[storePosition] = value;   // Store current value into the define position
+
+        // Store current value into the define position
+        array[storePosition] = value;
 
     }
 
@@ -55,8 +52,11 @@ public class ArrayQueue {
      */
     public int getHeadElement() {
 
+        // Incrementing position
+        ++ removePosition;
+
         // Verification of boundary positions in array
-        if (++removePosition == array.length) {
+        if (removePosition == array.length) {
             removePosition = 0;
         }
 
@@ -64,27 +64,12 @@ public class ArrayQueue {
     }
 
     /**
-     * Current method is used for getting queue elements with defined index
-     */
-    public int getArrayElement(int index) {
-
-        // Queue index validation
-        if (index <= array.length - 1){
-            currentElement = array[index];
-        }
-
-        else {
-            System.out.println("Please enter valid index");
-        }
-        return currentElement;
-    }
-
-    /**
      * Current method used for getting queue size
      * @return
      */
-    public int getQueueSize () {
-        int size = array.length;
+    public int getQueueSize() {
+
+        int size = array.length - 1;
         return size;
     }
 }
