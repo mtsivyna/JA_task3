@@ -1,9 +1,8 @@
-
 /**
  * Created with IntelliJ IDEA.
  * User: Maksym
- * Date: 15.09.13
- * Time: 20:34
+ * Date: 09.10.13
+ * Time: 23:54
  * To change this template use File | Settings | File Templates.
  */
 public class ArrayQueueStatic {
@@ -12,6 +11,8 @@ public class ArrayQueueStatic {
     private static int[] extendedArray;    // Extended array of int elements
     private static int storePosition;      // Value store position
     private static int removePosition;     // Position of remove array element
+    private static int addingCounter;      // Incrementing every time of calling method
+    private static int removeCounter;      // Incrementing every time of calling method
 
     /**
      * Current method is used for creating array
@@ -24,30 +25,44 @@ public class ArrayQueueStatic {
 
     /**
      * Current method is used for adding value into the storePosition in array
+     * Extending queue if need
      * @param value
      * @return
      */
     public static void addElement(int value) {
 
+        addingCounter ++;
 
+        // Verifying of boundary positions
+        if (storePosition == array.length) {
 
-        // Verification of boundary positions in array
-        if (storePosition + 1 == removePosition || (storePosition + 1 == array.length - 1 && removePosition == 0)) {
-            System.out.println("``````````");
-            //extendedArray = new int[array.length + 1];                     // create new extended array
-            //System.arraycopy(array, 0, extendedArray, 1, array.length);    // copying data into the new array
-            //array = extendedArray;                                         // redefining array
-            //storePosition = 0;
-            //removePosition ++;
-        }
-        // Store current value into the define position
-        array[storePosition] = value;
-        // Incrementing position
-        storePosition ++;
-        if (storePosition == array.length - 1){
             storePosition = 0;
+
+            // Extending queue if queue is filled on the boundary element
+            if (storePosition == removePosition) {
+
+                extendedArray = new int[array.length + 1];                      // Creating new array
+                System.arraycopy(array, 0, extendedArray, 1, array.length);     // Copying primary array
+                removePosition ++;
+                array = extendedArray;                                          // Re-initialization of array
+            }
         }
 
+        // Extending array if queue is filled in the middle
+        else if (storePosition == removePosition && addingCounter > 1) {
+
+            extendedArray = new int[array.length + 1];
+            // Copying first part of primary array
+            System.arraycopy(array, 0, extendedArray, 0, storePosition);
+            // Copying last part of primary array
+            System.arraycopy(array, storePosition, extendedArray, storePosition + 1,
+                    extendedArray.length - storePosition - 1);
+            removePosition ++;
+            array = extendedArray;
+        }
+
+        array[storePosition] = value;   // Store current value into the define position
+        storePosition ++;               // Incrementing position
     }
 
     /**
@@ -56,16 +71,22 @@ public class ArrayQueueStatic {
      */
     public static int getHeadElement() {
 
-        // Incrementing position
-        if (removePosition == array.length - 1) {
-            removePosition = 0;
+        removeCounter ++;
+
+        // Checking that head element is present in queue
+        if (removePosition == storePosition && removeCounter > addingCounter) {
+
+            System.out.println("There is no head element");
+            return 0;
         }
 
         // Verification of boundary positions in array
         if (removePosition == array.length) {
-            return 0;
+
+            removePosition = 0;
         }
-        removePosition ++;
+
+        removePosition ++;                  // Incrementing position
         return array[removePosition - 1];   // Return head element
     }
 
@@ -75,7 +96,7 @@ public class ArrayQueueStatic {
      */
     public static int getQueueSize() {
 
-        int size = array.length - 1;
+        int size = array.length;
         return size;
     }
 }
