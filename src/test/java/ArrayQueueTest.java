@@ -16,7 +16,7 @@ public class ArrayQueueTest {
      * @throws Exception
      */
 
-
+    // Testing class without extending
     @Test
     public void noExtendQueueTest() throws Exception {
 
@@ -31,27 +31,78 @@ public class ArrayQueueTest {
         assertEquals(5, queue.getHeadElement());
 
         queue.addElement(4);
-
+        queue.addElement(5);
 
         assertEquals(7, queue.getHeadElement());
         assertEquals(1, queue.getHeadElement());
         assertEquals(4, queue.getHeadElement());
-        //assertEquals(0, queue.getHeadElement());
+        assertEquals(5, queue.getHeadElement());
 
         assertEquals(5, queue.getQueueSize());
 
 
     }
 
+    // Testing class with extending and without getting head elements
     @Test
-    public void ExtendQueueTest() {
+    public void ExtendQueueTest() throws Exception {
 
-        ArrayQueue queue = new ArrayQueue(1);
+        ArrayQueue queue = new ArrayQueue(3);
+
         queue.addElement(1);
-        assertEquals(1, queue.getQueueSize());
         queue.addElement(2);
         queue.addElement(3);
-        assertEquals(2, queue.getQueueSize());
+        queue.addElement(4);
+        queue.addElement(5);
+        queue.addElement(6);
+        queue.addElement(7);
+        queue.addElement(8);
+        queue.addElement(9);
+
+        assertEquals(9, queue.getQueueSize());
+
 
     }
+
+    // Testing class with extending and with getting head elements
+    @Test
+    public void ExtendQueueTest1() {
+
+        ArrayQueue queue = new ArrayQueue(3);
+
+        queue.addElement(1);
+        queue.addElement(2);
+        queue.addElement(3);
+
+        assertEquals(1, queue.getHeadElement());
+        assertEquals(2, queue.getHeadElement());
+
+        queue.addElement(5);
+        queue.addElement(5);
+        queue.addElement(6);
+
+        assertEquals(4, queue.getQueueSize());
+
+
+    }
+
+    // Testing of getting not available head elements
+    @Test
+    public void GetUnAvailableHead() {
+
+        ArrayQueue queue = new ArrayQueue(3);
+
+        queue.addElement(1);
+        queue.addElement(2);
+        queue.addElement(3);
+
+        assertEquals(1, queue.getHeadElement());
+        assertEquals(2, queue.getHeadElement());
+        assertEquals(3, queue.getHeadElement());
+        assertEquals(0, queue.getHeadElement());
+
+        assertEquals(3, queue.getQueueSize());
+    }
+
+
 }

@@ -29,21 +29,24 @@ public class ArrayQueueStatic {
      */
     public static void addElement(int value) {
 
-        // Incrementing position
-        ++ storePosition;
+
 
         // Verification of boundary positions in array
-        if (storePosition == array.length) {
-
-            extendedArray = new int[array.length + 1];                     // create new extended array
-            System.arraycopy(array, 0, extendedArray, 1, array.length);    // copying data into the new array
-            array = extendedArray;                                         // redefining array
-            storePosition = 0;
-            removePosition ++;
+        if (storePosition + 1 == removePosition || (storePosition + 1 == array.length - 1 && removePosition == 0)) {
+            System.out.println("``````````");
+            //extendedArray = new int[array.length + 1];                     // create new extended array
+            //System.arraycopy(array, 0, extendedArray, 1, array.length);    // copying data into the new array
+            //array = extendedArray;                                         // redefining array
+            //storePosition = 0;
+            //removePosition ++;
         }
-
         // Store current value into the define position
         array[storePosition] = value;
+        // Incrementing position
+        storePosition ++;
+        if (storePosition == array.length - 1){
+            storePosition = 0;
+        }
 
     }
 
@@ -54,14 +57,16 @@ public class ArrayQueueStatic {
     public static int getHeadElement() {
 
         // Incrementing position
-        ++ removePosition;
-
-        // Verification of boundary positions in array
-        if (removePosition == array.length) {
+        if (removePosition == array.length - 1) {
             removePosition = 0;
         }
 
-        return array[removePosition];   // Return head element
+        // Verification of boundary positions in array
+        if (removePosition == array.length) {
+            return 0;
+        }
+        removePosition ++;
+        return array[removePosition - 1];   // Return head element
     }
 
     /**
