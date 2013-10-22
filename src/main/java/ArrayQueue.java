@@ -23,7 +23,7 @@ public class ArrayQueue {
     }
 
     /**
-     * Current method is used for extending queue
+     * Current method is used for extending queue.
      */
     private void extending () {
 
