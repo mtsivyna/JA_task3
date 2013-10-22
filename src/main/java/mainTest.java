@@ -12,6 +12,7 @@ public class mainTest {
     public static void main(String args []) {
 
 
+
         ArrayQueue methods = new ArrayQueue(3);    // Create object of ArrayQueue class
         /*for (int elementsPosition = 1; elementsPosition <= 7; elementsPosition++) {
             methods.addElement(elementsPosition);
@@ -23,8 +24,15 @@ public class mainTest {
         methods.addElement(3);
         System.out.println("- "+methods.getHeadElement());
         System.out.println("- "+methods.getHeadElement());
-
-
+        //System.out.println("- "+methods.getHeadElement());
+        //System.out.println("- "+methods.getHeadElement());
+        methods.addElement(4);
+        methods.addElement(5);
+        System.out.println("- "+methods.getHeadElement());
+        System.out.println("- "+methods.getHeadElement());
+        methods.addElement(6);
+        //methods.addElement(7);
+        methods.getarray();
 
 
         //

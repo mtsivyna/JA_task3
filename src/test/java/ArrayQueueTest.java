@@ -1,5 +1,6 @@
 import org.junit.Test;
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
 
 /**
  * Created with IntelliJ IDEA.
@@ -45,7 +46,7 @@ public class ArrayQueueTest {
 
     // Testing class with extending and without getting head elements
     @Test
-    public void ExtendQueueTest() throws Exception {
+    public void extendQueueTest_1() throws Exception {
 
         ArrayQueue queue = new ArrayQueue(3);
 
@@ -66,7 +67,7 @@ public class ArrayQueueTest {
 
     // Testing class with extending and with getting head elements
     @Test
-    public void ExtendQueueTest1() {
+    public void extendQueueTest_2() {
 
         ArrayQueue queue = new ArrayQueue(3);
 
@@ -82,13 +83,42 @@ public class ArrayQueueTest {
         queue.addElement(6);
 
         assertEquals(4, queue.getQueueSize());
+    }
 
+    // Testing class with extending and with getting all head elements
+    @Test
+    public void extendQueueTest_3() {
 
+        ArrayQueue queue = new ArrayQueue(3);
+
+        queue.addElement(1);
+        queue.addElement(2);
+        queue.addElement(3);
+
+        assertEquals(1, queue.getHeadElement());
+        assertEquals(2, queue.getHeadElement());
+        assertEquals(3, queue.getHeadElement());
+
+        queue.addElement(4);
+        queue.addElement(5);
+        queue.addElement(6);
+        queue.addElement(7);
+        queue.addElement(8);
+        queue.addElement(9);
+
+        assertEquals(4, queue.getHeadElement());
+        assertEquals(5, queue.getHeadElement());
+        assertEquals(6, queue.getHeadElement());
+        assertEquals(7, queue.getHeadElement());
+        assertEquals(8, queue.getHeadElement());
+        assertEquals(9, queue.getHeadElement());
+
+        assertTrue(queue.getQueueSize() >= 7);
     }
 
     // Testing of getting not available head elements
     @Test
-    public void GetUnAvailableHead() {
+    public void getUnAvailableHead() {
 
         ArrayQueue queue = new ArrayQueue(3);
 
@@ -103,6 +133,5 @@ public class ArrayQueueTest {
 
         assertEquals(3, queue.getQueueSize());
     }
-
 
 }
