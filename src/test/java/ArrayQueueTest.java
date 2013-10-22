@@ -11,7 +11,6 @@ import static junit.framework.Assert.assertTrue;
  */
 public class ArrayQueueTest {
 
-
     /**
      * Current method is used for testing get head element of queue functionality
      * @throws Exception
