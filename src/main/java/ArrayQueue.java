@@ -8,10 +8,9 @@
 public class ArrayQueue {
 
     private int[] array;            // Array of int elements
-    private int[] extendedArray;    // Extended array of int elements
     private int storePosition;      // Value store position
     private int removePosition;     // Position of remove array element
-    private int arraySize;          // Array size
+    private int size = 0;           // queue size
 
     /**
      * Current method is used for creating array
@@ -28,31 +27,24 @@ public class ArrayQueue {
     private void extending () {
 
         // Verifying of boundary positions
-        if (removePosition == array.length && arraySize != 0) {
+        if (size == array.length) {
 
-            removePosition = 0;
-
-        }
-
-        // Extending array if queue is filled
-        else if ((storePosition == removePosition ||
-                (storePosition == arraySize && removePosition == 0)) && arraySize != 0) {
-
-            extendedArray = new int[array.length + 2];
+            int addSize = array.length / 2 + 2;
+            int[] extendedArray = new int[array.length + addSize];
             // Copying first part of primary array
             System.arraycopy(array, 0, extendedArray, 0, storePosition);
             // Copying last part of primary array
-            System.arraycopy(array, storePosition, extendedArray, storePosition + 2,
-                    extendedArray.length - storePosition - 2);
+            System.arraycopy(array, storePosition, extendedArray, storePosition + addSize,
+                    extendedArray.length - storePosition - addSize);
 
-            // Incrementing head element position if array was extended in the middle
-            if (removePosition != 0) {
-
-                removePosition += 2;
+            // Incrementing head element position according to new array size
+            if(storePosition == removePosition) {
+                removePosition += addSize;
             }
+            else
+                removePosition = addSize;
 
             array = extendedArray;              // Redefining array
-            arraySize = extendedArray.length;   // Redefining arraySize variable
         }
     }
 
@@ -64,24 +56,15 @@ public class ArrayQueue {
 
     public void addElement(int value) {
 
-        // Queue size should be 0 after getting all head elements in queue
-        if ((storePosition == removePosition || arraySize == removePosition) && storePosition != arraySize) {
-
-            arraySize = 0;
-        }
-
         extending();
+        array[storePosition] = value;           // Store current value into the define position
+        size ++;                                // increment queue size after adding new element
+        storePosition ++;                       // incrementing position
 
-        // Verifying of boundary positions
-        if ((storePosition == arraySize && storePosition != removePosition) ||
-                storePosition == removePosition && arraySize != 0) {
+        if (storePosition == array.length) {    // verifying of boundary store position
 
             storePosition = 0;
         }
-
-        array[storePosition] = value;   // Store current value into the define position
-        storePosition ++;               // Incrementing position
-        arraySize = array.length;       // Redefining array size
     }
 
     /**
@@ -90,21 +73,21 @@ public class ArrayQueue {
      */
     public int getHeadElement() {
 
-        // Checking that head element is present in queue
-        if (removePosition == storePosition) {
+        if (size == 0) {
 
-            System.out.println("There is no head element");
             return 0;
         }
 
-        // Verification of boundary positions in array
-        if (removePosition == arraySize) {
+        if (removePosition == array.length) {
 
             removePosition = 0;
         }
 
-        removePosition ++;                  // Incrementing position
-        return array[removePosition - 1];   // Return head element
+        // Getting head element
+        int element = array[removePosition];
+        removePosition = (removePosition == array.length) ? 0 : removePosition + 1;
+        size --;
+        return element;   // Return head element
     }
 
     /**
@@ -113,7 +96,13 @@ public class ArrayQueue {
      */
     public int getQueueSize() {
 
-        arraySize = array.length;
-        return arraySize;
+        return array.length;
+    }
+
+    public void getarray () {
+
+        for (int el : array) {
+            System.out.println(el);
+        }
     }
 }

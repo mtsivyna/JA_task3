@@ -45,7 +45,7 @@ public class ArrayQueueTest {
 
     // Testing class with extending and without getting head elements
     @Test
-    public void extendQueueTest_1() throws Exception {
+    public void extendQueueTestWithoutGet() throws Exception {
 
         ArrayQueue queue = new ArrayQueue(3);
 
@@ -59,14 +59,14 @@ public class ArrayQueueTest {
         queue.addElement(8);
         queue.addElement(9);
 
-        assertEquals(9, queue.getQueueSize());
+        assertEquals(11, queue.getQueueSize());
 
 
     }
 
     // Testing class with extending and with getting head elements
     @Test
-    public void extendQueueTest_2() {
+    public void extendQueueTestWithGet() {
 
         ArrayQueue queue = new ArrayQueue(3);
 
@@ -77,16 +77,16 @@ public class ArrayQueueTest {
         assertEquals(1, queue.getHeadElement());
         assertEquals(2, queue.getHeadElement());
 
-        queue.addElement(5);
+        queue.addElement(3);
         queue.addElement(5);
         queue.addElement(6);
 
-        assertEquals(4, queue.getQueueSize());
+        assertEquals(6, queue.getQueueSize());
     }
 
     // Testing class with extending and with getting all head elements
     @Test
-    public void extendQueueTest_3() {
+    public void extendQueueTestGetAll() {
 
         ArrayQueue queue = new ArrayQueue(3);
 
@@ -112,7 +112,7 @@ public class ArrayQueueTest {
         assertEquals(8, queue.getHeadElement());
         assertEquals(9, queue.getHeadElement());
 
-        assertTrue(queue.getQueueSize() >= 7);
+        assertTrue(queue.getQueueSize() >= 6);
     }
 
     // Testing of getting not available head elements
@@ -132,5 +132,47 @@ public class ArrayQueueTest {
 
         assertEquals(3, queue.getQueueSize());
     }
+
+    @Test
+    public void extendQueueTestFuckYeah() {
+
+        ArrayQueue queue = new ArrayQueue(3);
+
+        queue.addElement(1);
+        queue.addElement(2);
+
+        assertEquals(1, queue.getHeadElement());
+        assertEquals(2, queue.getHeadElement());
+
+        queue.addElement(3);
+        queue.addElement(4);
+        queue.addElement(5);
+
+        assertEquals(3, queue.getHeadElement());
+        assertEquals(4, queue.getHeadElement());
+        assertEquals(5, queue.getHeadElement());
+    }
+    @Test
+    public void extendQueueTestFuckYeah2() {
+
+        ArrayQueue queue = new ArrayQueue(3);
+
+        queue.addElement(1);
+        queue.addElement(2);
+
+        assertEquals(1, queue.getHeadElement());
+        assertEquals(2, queue.getHeadElement());
+
+        queue.addElement(3);
+        queue.addElement(4);
+        queue.addElement(5);
+        queue.addElement(6);
+
+        assertEquals(3, queue.getHeadElement());
+        assertEquals(4, queue.getHeadElement());
+        assertEquals(5, queue.getHeadElement());
+        assertEquals(6, queue.getHeadElement());
+    }
+
 
 }

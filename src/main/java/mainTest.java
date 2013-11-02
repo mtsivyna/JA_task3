@@ -22,19 +22,25 @@ public class mainTest {
         methods.addElement(1);
         methods.addElement(2);
         methods.addElement(3);
+
+        System.out.println("- "+methods.getHeadElement());
         System.out.println("- "+methods.getHeadElement());
         System.out.println("- "+methods.getHeadElement());
         //System.out.println("- "+methods.getHeadElement());
-        //System.out.println("- "+methods.getHeadElement());
+
         methods.addElement(4);
         methods.addElement(5);
-        System.out.println("- "+methods.getHeadElement());
-        System.out.println("- "+methods.getHeadElement());
         methods.addElement(6);
+        methods.addElement(7);
+        System.out.println("- "+methods.getHeadElement());
+        System.out.println("- "+methods.getHeadElement());
+        System.out.println("- "+methods.getHeadElement());
+
+        //methods.addElement(6);
         //methods.addElement(7);
+        //methods.getarray();
+
         methods.getarray();
-
-
         //
 
 
