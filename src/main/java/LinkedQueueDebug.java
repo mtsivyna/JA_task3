@@ -5,17 +5,13 @@
  * @author     Maksym Tsivyna
  */
 public class LinkedQueueDebug {
-    /**                                                             +
+    /**
      * Running test for ArrayQueue / ArrayQueueStatic
      * @param args
      */
     public static void main(String args []) {
 
-
-        LinkedQueue methods = new LinkedQueue(3);
-
-
-
-
+        LinkedQueue n = new LinkedQueue();
+        n.addElement();
     }
 }

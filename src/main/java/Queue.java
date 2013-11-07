@@ -7,7 +7,7 @@
  */
 public interface Queue {
 
-    void addElement (int value);
+    void addElement(int value);
     int getHeadElement();
     int getQueueSize();
     void getarray ();

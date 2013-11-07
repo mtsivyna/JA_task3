@@ -4,7 +4,7 @@
  * @version    1.1 09/08/13
  * @author     Maksym Tsivyna
  */
-public class mainTest {
+public class MainTest {
     /**                                                             +
      * Running test for ArrayQueue / ArrayQueueStatic
      * @param args
